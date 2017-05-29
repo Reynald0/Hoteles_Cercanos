@@ -1,6 +1,7 @@
 package com.androidtutorialpoint.googlemapsnearbyplaces;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Build;
@@ -34,6 +35,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         LocationListener {
 
     private GoogleMap mMap;
+    public static Boolean zoom = false;
     double latitude;
     double longitude;
     private int PROXIMITY_RADIUS = 10000;
@@ -64,6 +66,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+    }
+
+    public void abrirRegistro(View view)
+    {
+        Intent registro_activity = new Intent(this, Registro.class);
+        startActivity(registro_activity);
     }
 
     private boolean CheckGooglePlayServices() {
@@ -108,8 +116,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             mMap.setMyLocationEnabled(true);
         }
 
-        Button btnGym = (Button) findViewById(R.id.btnGym);
-        btnGym.setOnClickListener(new View.OnClickListener() {
+        Button btn_Hoteles = (Button) findViewById(R.id.btn_Hoteles);
+        btn_Hoteles.setOnClickListener(new View.OnClickListener() {
             String hotel = "Hotel";
             @Override
             public void onClick(View v) {

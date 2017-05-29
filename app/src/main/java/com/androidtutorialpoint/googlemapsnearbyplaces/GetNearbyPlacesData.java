@@ -52,9 +52,11 @@ public class GetNearbyPlacesData extends AsyncTask<Object, String, String> {
         nearbyPlacesList =  dataParser.parse(result);
         ShowNearbyPlaces(nearbyPlacesList);
         Log.d("GooglePlacesReadTask", "onPostExecute Exit");
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(ubicacion));
-        mMap.animateCamera(CameraUpdateFactory.zoomTo(16));
-
+        if (MapsActivity.zoom)
+        {
+            mMap.moveCamera(CameraUpdateFactory.newLatLng(ubicacion));
+            mMap.animateCamera(CameraUpdateFactory.zoomTo(16));
+        }
     }
 
     private void ShowNearbyPlaces(List<HashMap<String, String>> nearbyPlacesList) {
